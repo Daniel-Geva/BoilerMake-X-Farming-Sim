@@ -119,18 +119,7 @@ public class Crop {
         }
 
     }
-    public void updates(int){
-        this.name = "Corn";
-        this.setNumberName(name);
 
-        private double value;
-        private int growthStage;
-        private int waterLevel;
-        private int fertilizerLevel;
-        private double health;
-        private int harvest;
-
-    }
 
     public void plant(int crop) {
         switch (crop) {
