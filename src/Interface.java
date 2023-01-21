@@ -13,10 +13,15 @@ public class Interface {
         int numFields = field.getNumFields();
         boolean plantLoop = true;
         while (plantLoop) {
+            //System.out.println(field.getCropType(1));;
             field.print();
             System.out.println("You have " + numFields + " fields to plant");
-            System.out.println("Choose a field to plant:");
+            System.out.println("Choose a field to plant, or type 0 to exit:");
             int fieldNum = scanInt();
+            if (fieldNum == 0) {
+                plantLoop = false;
+                continue;
+            }
             System.out.println("Choose a crop to plant:");
             field.printCropTypes();
             int cropNum = scanInt();
@@ -25,8 +30,6 @@ public class Interface {
                 System.out.println("Invalid field number");
             } else if (result == -2) {
                 System.out.println("Invalid crop type");
-            } else if (result == 9) {
-                plantLoop = false;
             } else {
                 System.out.printf("Planted %s\n", field.getCropType(fieldNum));
             }

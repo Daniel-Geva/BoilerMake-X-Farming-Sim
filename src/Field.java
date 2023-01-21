@@ -46,7 +46,7 @@ public class Field {
         if ((type > 7) || (type < 0)) {
             return -2;
         }
-        crops[field].plant(type);
+        crops[field - 1].plant(type);
         return type;
     }
 
@@ -60,7 +60,8 @@ public class Field {
             System.out.print("|");
             for (int j = 0; j < amount; j++) {
                 int rep = crops[(row * 3) + j].getNumber_Name();
-                //System.out.printf("[crops[(%d)]].getNumber_Name()\n", (row * 3) + 1);
+                //System.out.printf("crops[%d].getNumber_Name() = %d\n", (row * 3) + j, rep);
+                //System.out.printf("crops[%d].getName() = %s\n", (row * 3) + j, crops[(row * 3) + j].getName());
                 System.out.printf("%d  %d  %d  %d  %d|", rep, rep, rep, rep, rep);
             }
             System.out.println();
@@ -94,13 +95,13 @@ public class Field {
 
     public void applyWeather(Weather weather) {
         for (int i = 0; i < numFields; i++) {
-            weather.applyStatus(crops[i]);
+            weather.applyStatus(crops[i - 1]);
         }
     }
 
     public String getCropType(int fieldNum) {
         //System.out.printf("crops[%d].getNumber_Name() = %d\n", fieldNum, crops[fieldNum].getNumber_Name());
-        return crops[fieldNum].getName();
+        return crops[fieldNum - 1].getName();
     }
 
     public void printCropTypes() {
