@@ -1,12 +1,10 @@
 public class Field {
-    private int[][][] field;
     private Crop[] crops;
     private int numFields;
     private int upgradeValue;
     //TODO: have an empty crop type
 
     Field() {
-        this.field = new int[9][5][5];
         this.crops = new Crop[9];
         this.numFields = 1;
         this.upgradeValue = 10;
@@ -16,7 +14,7 @@ public class Field {
         int total = 0;
         for (int i = 0; i < numFields; i++) {
             total += crops[i].value() * crops[i].remaining();
-            crops[i].plant(-1); //set fields empty
+            crops[i].plant(0); //set fields empty
         }
         return total;
     }
@@ -69,7 +67,7 @@ public class Field {
         }
         System.out.println();
     }
-
+    //TODO: fix printing
     public void print() {
         int row = 0;
         for (int i = 0; i < 3; i++) {
@@ -80,6 +78,20 @@ public class Field {
             printRow(perRow, row);
             row++;
         }
+    }
+
+    public void applyWeather(Weather weather) {
+        for (int i = 0; i < numFields; i++) {
+            weather.applyStatus(crops[i]);
+        }
+    }
+
+    public String getCropType(int fieldNum) {
+        return crops[fieldNum].getName();
+    }
+
+    public void printCropTypes() {
+        crops[0].printTypes();
     }
 
     public int getNumFields() {

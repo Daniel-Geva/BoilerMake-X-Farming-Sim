@@ -9,23 +9,27 @@ public class Interface {
     }
 
     private static void planting(Field field) {
-        //clear();
+        clear();
         int numFields = field.getNumFields();
-        field.print();
-        System.out.println("You have " + numFields + " fields to plant");
-        System.out.println("Choose a field to plant:");
-        int fieldNum = scanInt();
-        System.out.println("Choose a crop to plant:");
-        //TODO: print crop types
-        int cropNum = scanInt();
-        int result = field.plant(cropNum, fieldNum);
-        if (result == -1) {
-            System.out.println("Invalid field number");
-        } else if (result == -2) {
-            System.out.println("Invalid crop type");
-        } else {
-            System.out.println("Planted ----");
-            //TODO: print crop type
+        boolean plantLoop = true;
+        while (plantLoop) {
+            field.print();
+            System.out.println("You have " + numFields + " fields to plant");
+            System.out.println("Choose a field to plant:");
+            int fieldNum = scanInt();
+            System.out.println("Choose a crop to plant:");
+            field.printCropTypes();
+            int cropNum = scanInt();
+            int result = field.plant(cropNum, fieldNum);
+            if (result == -1) {
+                System.out.println("Invalid field number");
+            } else if (result == -2) {
+                System.out.println("Invalid crop type");
+            } else if (result == 9) {
+                plantLoop = false;
+            } else {
+                System.out.printf("Planted %s\n", field.getCropType(fieldNum));
+            }
         }
     }
 
@@ -33,12 +37,13 @@ public class Interface {
         //TODO: print crop info
     }
 
-    private static void weatherForecast() {
+    private static void weatherForecast(Weather weather) {
+        weather.showForcast();
         //TODO: forecast the weather
     }
 
     private static int upgrade(Field field, int money) {
-        //clear
+        clear();
         System.out.println("Possible Upgrades:");
         if (field.getUpgradeValue() == -1) {
             System.out.println("1) Max number of fields reached");
@@ -61,17 +66,21 @@ public class Interface {
     }
 
     private static void clear() {
-        //TODO: clear screen
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
         Field field = new Field();
+        Weather weather = new Weather();
         int money = 0;
 
         boolean running = true;
         while (running) {
             boolean innerLoop = true;
             while (innerLoop) {
+                clear();
                 System.out.println("Here is your farm:");
                 field.print();
                 System.out.println("Select an action:");
@@ -87,17 +96,28 @@ public class Interface {
                 } else if (response == 2) {
                     cropInfo();
                 } else if (response == 3) {
-                    weatherForecast();
+                    weatherForecast(weather);
                 } else if (response == 4) {
                     money = upgrade(field, money);
                 } else if (response == 5) {
                     //TODO: advance time
+                    innerLoop = false;
                 } else if (response == 6) {
                     innerLoop = false;
                     running = false;
                 } else {
                     System.out.println("Invalid selection, please try again");
                 }
+            }
+
+            if (running) {
+                weather.generateWeather();
+                field.applyWeather(weather);
+                weather.getWeather();
+                int harvest = field.harvest();
+                money += harvest;
+                System.out.printf("Congratulations! You made $%d this harvest! Your new total is %d\n", harvest, money);
+
             }
         }
     }
