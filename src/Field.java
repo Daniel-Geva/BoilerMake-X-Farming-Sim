@@ -12,10 +12,10 @@ public class Field {
         this.upgradeValue = 10;
     }
 
-    public double harvest() {
+    public double harvest(Tractor tractor) {
         double total = 0;
         for (int i = 0; i < numFields; i++) {
-            total += crops[i].harvest();
+            total += crops[i].harvest(tractor);
             crops[i].plant(0);
         }
         return total;
