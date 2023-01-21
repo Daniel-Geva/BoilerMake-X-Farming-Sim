@@ -146,7 +146,7 @@ public class Crop {
 
                 number_name = setNumberName(name);
                 value = 0;
-                growthStage = 1;
+                growthStage = 0;
                 idealwater = 0;
                 fertilizerLevel = 0;
                 health = 0;
@@ -214,7 +214,6 @@ public class Crop {
                 break;
 
             case 6:
-                System.out.println("hit a 6ser");
                 this.name = "Okra";
 
                 number_name = setNumberName(name);
