@@ -43,7 +43,7 @@ public class Field {
         if (field > numFields) {
             return -1;
         }
-        if ((type > 5) || (type < 1)) {
+        if ((type > 7) || (type < 0)) {
             return -2;
         }
         crops[field].plant(type);
