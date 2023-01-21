@@ -13,7 +13,7 @@ public class Field {
         this.upgradeValue = 10;
     }
 
-    public int harvest() {
+    public int harvest() { //TODO: change to doubles
         int total = 0;
         for (int i = 0; i < numFields; i++) {
             total += crops[i].getValue() * crops[i].getHarvest();
