@@ -132,10 +132,9 @@ public class Crop {
 
     }
 
-    public String plant(int crop) {
+    public void plant(int crop) {
         switch (crop) {
             case 0:
-                return crop_numbers[0];
                 this.name = "Soil";
 
                 number_name = setNumberName(name);
@@ -145,7 +144,6 @@ public class Crop {
                 fertilizerLevel = 0;
                 health = 0;
                 harvest = 0;
-            return crop_numbers[10;
 
             case 1:
                 this.name = "Corn";
@@ -159,7 +157,6 @@ public class Crop {
                 harvest = 0;
 
 
-                return crop_numbers[1];
             case 2:
                 this.name = "Cotton";
 
@@ -170,7 +167,6 @@ public class Crop {
                 fertilizerLevel = 5;
                 health = 5;
                 harvest = 0;
-                return crop_numbers[2];
             case 3:
                 this.name = "Cranberries";
 
@@ -181,7 +177,6 @@ public class Crop {
                 fertilizerLevel = 5;
                 health = 5;
                 harvest = 0;
-                return crop_numbers[3];
             case 4:
                 this.name = "Rice";
 
@@ -192,7 +187,6 @@ public class Crop {
                 fertilizerLevel = 5;
                 health = 5;
                 harvest = 0;
-                return crop_numbers[4];
             case 5:
                 this.name = "Soybeans";
 
@@ -203,7 +197,6 @@ public class Crop {
                 fertilizerLevel = 5;
                 health = 5;
                 harvest = 0;
-                return crop_numbers[5];
             case 6:
                 this.name = "Okra";
 
@@ -214,7 +207,6 @@ public class Crop {
                 fertilizerLevel = 5;
                 health = 5;
                 harvest = 0;
-                return crop_numbers[6];
             case 7:
                 this.name = "Wheat";
 
@@ -225,9 +217,9 @@ public class Crop {
                 fertilizerLevel = 5;
                 health = 5;
                 harvest = 0;
-                return crop_numbers[7];
             default:
-                return "Invalid Crop Number";
+                System.out.println("Invalid Crop Number");
+                //return "Invalid Crop Number";
         }
     }
 }
