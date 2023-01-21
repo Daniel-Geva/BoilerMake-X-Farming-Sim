@@ -119,26 +119,112 @@ public class Crop {
         }
 
     }
+    public void updates(int){
+        this.name = "Corn";
+        this.setNumberName(name);
 
+        private double value;
+        private int growthStage;
+        private int waterLevel;
+        private int fertilizerLevel;
+        private double health;
+        private int harvest;
+
+    }
 
     public String plant(int crop) {
         switch (crop) {
             case 0:
                 return crop_numbers[0];
+                this.name = "Soil";
+
+                number_name = setNumberName(name);
+                value = 0;
+                growthStage = 0;
+                waterLevel = 0;
+                fertilizerLevel = 0;
+                health = 0;
+                harvest = 0;
+            return crop_numbers[10;
+
             case 1:
+                this.name = "Corn";
+
+                number_name = setNumberName(name);
+                value = 4;
+                growthStage = 0;
+                waterLevel = 5;
+                fertilizerLevel = 5;
+                health = 5;
+                harvest = 0;
+
 
                 return crop_numbers[1];
             case 2:
+                this.name = "Cotton";
+
+                number_name = setNumberName(name);
+                value = 47;
+                growthStage = 0;
+                waterLevel = 5;
+                fertilizerLevel = 5;
+                health = 5;
+                harvest = 0;
                 return crop_numbers[2];
             case 3:
+                this.name = "Cranberries";
+
+                number_name = setNumberName(name);
+                value = 13;
+                growthStage = 0;
+                waterLevel = 5;
+                fertilizerLevel = 5;
+                health = 5;
+                harvest = 0;
                 return crop_numbers[3];
             case 4:
+                this.name = "Rice";
+
+                number_name = setNumberName(name);
+                value = 99;
+                growthStage = 0;
+                waterLevel = 5;
+                fertilizerLevel = 5;
+                health = 5;
+                harvest = 0;
                 return crop_numbers[4];
             case 5:
+                this.name = "Soybeans";
+
+                number_name = setNumberName(name);
+                value = 68;
+                growthStage = 0;
+                waterLevel = 5;
+                fertilizerLevel = 5;
+                health = 5;
+                harvest = 0;
                 return crop_numbers[5];
             case 6:
+                this.name = "Okra";
+
+                number_name = setNumberName(name);
+                value = 16;
+                growthStage = 0;
+                waterLevel = 5;
+                fertilizerLevel = 5;
+                health = 5;
+                harvest = 0;
                 return crop_numbers[6];
             case 7:
+                this.name = "Wheat";
+
+                number_name = setNumberName(name);
+                value = 50;
+                growthStage = 0;
+                waterLevel = 5;
+                fertilizerLevel = 5;
+                health = 5;
+                harvest = 0;
                 return crop_numbers[7];
             default:
                 return "Invalid Crop Number";
