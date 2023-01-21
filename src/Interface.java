@@ -3,9 +3,12 @@ import java.util.Scanner;
 public class Interface {
     //TODO: figure out how to clear terminal (print many newlines?)
     private static void planting(Field field) {
+        //clear();
         int numFields = field.getNumFields();
+        field.print();
         System.out.println("You have " + numFields + " fields to plant");
-        System.out.println("You can plant ");
+        System.out.println("Choose a field and crop to plant:");
+
         //TODO: finish planting method
     }
 
@@ -18,7 +21,11 @@ public class Interface {
     }
 
     private static void upgrade() {
+        //TODO: upgrades
+    }
 
+    private static void clear() {
+        //TODO: clear screen
     }
 
     public static void main(String[] args) {
