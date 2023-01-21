@@ -1,6 +1,6 @@
 public class Tractor {
     private int level; // 1-9
-    private int weatherRes; // weather resistance (scale of 1-4)
+    private int weatherRes; // weather resistance (scale of 0-3)
     private double horsepower; // horsepower (scale of 1-4)
     private String type; // Compact(lvl 1-4), Utility(lvl 5-6), Row Crop(lvl 7-8), 4WD(lvl 9)
 
@@ -41,22 +41,22 @@ public class Tractor {
     public void adjustStats(int level) {
         if((level >= 1) && (level <= 4)) {
             type = "Compact";
-            weatherRes = 1;
+            weatherRes = 0;
             horsepower = 20 + (8*level); // 28, 36, 44, 52
         }
         else if((level >= 5) && (level <= 6)) {
             type = "Utility";
-            weatherRes = 2;
+            weatherRes = 1;
             horsepower = 75 + 75*(level-5); // 75, 150
         }
         else if((level >= 7) && (level <= 8)) {
             type = "Row Crop";
-            weatherRes = 3;
+            weatherRes = 2;
             horsepower = 275 + 75*(level-7); // 275, 350
         }
         else if(level == 9) {
             type = "4WD";
-            weatherRes = 4;
+            weatherRes = 3;
             horsepower = 500;
         }
         else {
