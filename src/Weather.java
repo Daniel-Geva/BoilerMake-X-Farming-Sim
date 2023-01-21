@@ -42,7 +42,7 @@ public class Weather {
         int max = types.length - 1;        //max num of types
         int min = 1;        //min num of types
         int randomIdx = (int) (Math.random() * (max - min + 1) + min);
-        status = types[randomIdx];
+        status = types[randomIdx];      //make it add up to 100%
 
         int randWeather = (int) (Math.random() * 50);
         percent[randomIdx] = randWeather;
@@ -51,11 +51,12 @@ public class Weather {
 
     public void applyStatus(Crop crop) {
         crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)));
+        int random = (int) (Math.random() * (25 - 2 + 1) + 2);
         if (status.equals(types[0])) {
-            crop.setWaterLevel((int) (crop.waterLevel + 25));
+            crop.setWaterLevel((int) (crop.waterLevel + random));
         }
         else if (status.equals(types[1])) {
-            crop.setWaterLevel((int) (crop.waterLevel - 25));
+            crop.setWaterLevel((int) (crop.waterLevel - random));
         }
         else if (status.equals(types[2])) {
             crop.setWaterLevel((int) crop.waterLevel);
@@ -87,71 +88,75 @@ public class Weather {
     }
 
     public void getWeather() {
-        if (status.equals("rainy")) {
-            System.out.println("OH NO! IT'S RAINING");
-            System.out.println("                                        ___    ,'\"\"\"\"'.\n" +
-                    "                                    ,\"\"\"   \"\"\"\"'      `.\n" +
-                    "                                   ,'        _.         `._\n" +
-                    "                                  ,'       ,'              `\"\"\"'.\n" +
-                    "                                 ,'    .-\"\"`.    ,-'            `.\n" +
-                    "                                ,'    (        ,'                :\n" +
-                    "                              ,'     ,'           __,            `.\n" +
-                    "                        ,\"\"\"\"'     .' ;-.    ,  ,'  \\             `\"\"\"\".\n" +
-                    "                      ,'           `-(   `._(_,'     )_                `.\n" +
-                    "                     ,'         ,---. \\ @ ;   \\ @ _,'                   `.\n" +
-                    "                ,-\"\"'         ,'      ,--'-    `;'                       `.\n" +
-                    "               ,'            ,'      (      `. ,'                          `.\n" +
-                    "               ;            ,'        \\    _,','                            `.\n" +
-                    "              ,'            ;          `--'  ,'                              `.\n" +
-                    "             ,'             ;          __    (                    ,           `.\n" +
-                    "             ;              `____...  `78b   `.                  ,'           ,'\n" +
-                    "             ;    ...----'''' )  _.-  .d8P    `.                ,'    ,'    ,'\n" +
-                    "_....----''' '.        _..--\"_.-:.-' .'        `.             ,''.   ,' `--'\n" +
-                    "              `\" mGk \"\" _.-'' .-'`-.:..___...--' `-._      ,-\"'   `-'\n" +
-                    "        _.--'       _.-'    .'   .' .'               `\"\"\"\"\"\n" +
-                    "  __.-''        _.-'     .-'   .'  /\n" +
-                    " '          _.-' .-'  .-'        .'\n" +
-                    "        _.-'  .-'  .-' .'  .'   /\n" +
-                    "    _.-'      .-'   .-'  .'   .'\n" +
-                    "_.-'       .-'    .'   .'    /\n" +
-                    "       _.-'    .-'   .'    .'\n" +
-                    "    .-'            .'");
-        } else if (status.equals("cloudy")) {
-            System.out.print("IT'S CLOUDY");
-            System.out.println("          .-~~~-.\n" +
-                    "  .- ~ ~-(       )_ _\n" +
-                    " /                    ~ -.\n" +
-                    "|                          ',\n" +
-                    " \\                         .'\n" +
-                    "   ~- ._ ,. ,.,.,., ,.. -~\n" +
-                    "           '       '");
-        } else if (status.equals("sunny")) {
-            System.out.println("IT'S SUNNY!!");
-            System.out.println("                        |\n" +
-                    "                    .   |\n" +
-                    "                        |\n" +
-                    "          \\    *        |     *    .  /\n" +
-                    "            \\        *  |  .        /\n" +
-                    "         .    \\     ___---___     /    .  \n" +
-                    "                \\.--         --./     \n" +
-                    "     ~-_    *  ./               \\.   *   _-~\n" +
-                    "        ~-_   /    ^         ^    \\   _-~     *\n" +
-                    "   *       ~-/    ___       ___    \\-~        \n" +
-                    "     .      |    (_O_)     (_O_)    |      .\n" +
-                    "         * |                         | *     \n" +
-                    "-----------|                         |-----------\n" +
-                    "  .        |    <               >    |        .    \n" +
-                    "        *   |    \\             /    | *\n" +
-                    "           _-\\    `.         .'    /-_    *\n" +
-                    "     .  _-~ . \\     `-.___.-'     /   ~-_     \n" +
-                    "     _-~       `\\               /'*      ~-_  \n" +
-                    "    ~           /`--___   ___--'\\           ~\n" +
-                    "           *  /        ---     .  \\        .\n" +
-                    "            /     *     |           \\\n" +
-                    "          /             |   *         \\\n" +
-                    "                     .  |        .\n" +
-                    "                        |\n" +
-                    "                        |");
+        switch (status) {
+            case "rainy" -> {
+                System.out.println("OH NO! IT'S RAINING");
+                System.out.println("                                        ___    ,'\"\"\"\"'.\n" +
+                        "                                    ,\"\"\"   \"\"\"\"'      `.\n" +
+                        "                                   ,'        _.         `._\n" +
+                        "                                  ,'       ,'              `\"\"\"'.\n" +
+                        "                                 ,'    .-\"\"`.    ,-'            `.\n" +
+                        "                                ,'    (        ,'                :\n" +
+                        "                              ,'     ,'           __,            `.\n" +
+                        "                        ,\"\"\"\"'     .' ;-.    ,  ,'  \\             `\"\"\"\".\n" +
+                        "                      ,'           `-(   `._(_,'     )_                `.\n" +
+                        "                     ,'         ,---. \\ @ ;   \\ @ _,'                   `.\n" +
+                        "                ,-\"\"'         ,'      ,--'-    `;'                       `.\n" +
+                        "               ,'            ,'      (      `. ,'                          `.\n" +
+                        "               ;            ,'        \\    _,','                            `.\n" +
+                        "              ,'            ;          `--'  ,'                              `.\n" +
+                        "             ,'             ;          __    (                    ,           `.\n" +
+                        "             ;              `____...  `78b   `.                  ,'           ,'\n" +
+                        "             ;    ...----'''' )  _.-  .d8P    `.                ,'    ,'    ,'\n" +
+                        "_....----''' '.        _..--\"_.-:.-' .'        `.             ,''.   ,' `--'\n" +
+                        "              `\" ___ \"\" _.-'' .-'`-.:..___...--' `-._      ,-\"'   `-'\n" +
+                        "        _.--'       _.-'    .'   .' .'               `\"\"\"\"\"\n" +
+                        "  __.-''        _.-'     .-'   .'  /\n" +
+                        " '          _.-' .-'  .-'        .'\n" +
+                        "        _.-'  .-'  .-' .'  .'   /\n" +
+                        "    _.-'      .-'   .-'  .'   .'\n" +
+                        "_.-'       .-'    .'   .'    /\n" +
+                        "       _.-'    .-'   .'    .'\n" +
+                        "    .-'            .'");
+            }
+            case "cloudy" -> {
+                System.out.print("IT'S CLOUDY");
+                System.out.println("          .-~~~-.\n" +
+                        "  .- ~ ~-(       )_ _\n" +
+                        " /                    ~ -.\n" +
+                        "|                          ',\n" +
+                        " \\                         .'\n" +
+                        "   ~- ._ ,. ,.,.,., ,.. -~\n" +
+                        "           '       '");
+            }
+            case "sunny" -> {
+                System.out.println("IT'S SUNNY!!");
+                System.out.println("                        |\n" +
+                        "                    .   |\n" +
+                        "                        |\n" +
+                        "          \\    *        |     *    .  /\n" +
+                        "            \\        *  |  .        /\n" +
+                        "         .    \\     ___---___     /    .  \n" +
+                        "                \\.--         --./     \n" +
+                        "     ~-_    *  ./               \\.   *   _-~\n" +
+                        "        ~-_   /    ^         ^    \\   _-~     *\n" +
+                        "   *       ~-/    ___       ___    \\-~        \n" +
+                        "     .      |    (_O_)     (_O_)    |      .\n" +
+                        "         * |                         | *     \n" +
+                        "-----------|                         |-----------\n" +
+                        "  .        |    <               >    |        .    \n" +
+                        "        *   |    \\             /    | *\n" +
+                        "           _-\\    `.         .'    /-_    *\n" +
+                        "     .  _-~ . \\     `-.___.-'     /   ~-_     \n" +
+                        "     _-~       `\\               /'*      ~-_  \n" +
+                        "    ~           /`--___   ___--'\\           ~\n" +
+                        "           *  /        ---     .  \\        .\n" +
+                        "            /     *     |           \\\n" +
+                        "          /             |   *         \\\n" +
+                        "                     .  |        .\n" +
+                        "                        |\n" +
+                        "                        |");
+            }
         }
     }
 
