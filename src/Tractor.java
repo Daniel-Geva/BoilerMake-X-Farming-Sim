@@ -19,6 +19,25 @@ public class Tractor {
         adjustStats(level);
     }
 
+    public int getLevel() {
+        return level;
+    }
+    public int getWeatherRes() {
+        return weatherRes;
+    }
+
+    public int getHorsepower() {
+        return horsepower;
+    }
+    public String getType() {
+        return type;
+    }
+
+    public void setLevel(int l) {
+        level = l;
+        adjustStats(level);
+    }
+
     public void adjustStats(int level) {
         if((level >= 1) && (level <= 4)) {
             type = "Compact";
@@ -46,7 +65,7 @@ public class Tractor {
     }
 
     public int plow() {
-        return 0;
+        return horsepower / 500;
     }
     public int levelUp(int money) {
         if (((level == 4) || (level == 6) || (level == 8)) && (money > UPGRADE_TYPE)) {
