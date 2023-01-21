@@ -1,6 +1,6 @@
 public class Tractor {
-    private int level = 0; // 1-9
-    private int weatherRes = 0; // weather resistance (scale of 1-4)
+    private int level = 1; // 1-9
+    private int weatherRes = 1; // weather resistance (scale of 1-4)
     private int horsepower = 1; // horsepower (scale of 1-4)
     private String type = ""; // Compact(lvl 1-4), Utility(lvl 5-6), Row Crop(lvl 7-8), 4WD(lvl 9)
 
@@ -8,7 +8,7 @@ public class Tractor {
     final int UPGRADE_TYPE = 50000;
 
     public Tractor() {
-        level = 0;
+        level = 1;
         type = "Compact";
         weatherRes = 0;
         horsepower = 1;
@@ -67,16 +67,28 @@ public class Tractor {
     public int plow() {
         return horsepower / 500;
     }
+
+    public int getUpgradeCost() {
+        if ((level == 4) || (level == 6) || (level == 8)) {
+            return UPGRADE_TYPE;
+        }
+        else if ((level == 1) || (level == 2) || (level == 3) || (level == 5) || (level == 7)) {
+            return UPGRADE_LVL;
+        }
+        else {
+            return -1;
+        }
+    }
     public int levelUp(int money) {
         if (((level == 4) || (level == 6) || (level == 8)) && (money > UPGRADE_TYPE)) {
             level++;
             adjustStats(level);
-            return level;
+            return money-UPGRADE_TYPE;
         }
         else if (((level == 1) || (level == 2) || (level == 3) || (level == 5) || (level == 7)) && (money > UPGRADE_LVL)) {
             level++;
             adjustStats(level);
-            return level;
+            return money-UPGRADE_LVL;
         }
         else {
             return -1;
