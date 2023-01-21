@@ -159,7 +159,8 @@ public class Interface {
                 double harvest = field.harvest();
                 money += harvest;
                 System.out.printf("Congratulations! You made $%.2f this harvest! Your new total is %.2f\n", harvest, money);
-
+                System.out.println("Press ENTER to continue");
+                scan(2);
             }
         }
     }
