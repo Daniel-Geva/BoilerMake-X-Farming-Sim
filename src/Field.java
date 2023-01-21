@@ -4,8 +4,11 @@ public class Field {
     private int upgradeValue;
     //TODO: have an empty crop type
 
-    Field() {
+    public Field() {
         this.crops = new Crop[9];
+        for (int i = 0; i < 9; i++) {
+            crops[i] = new Crop("Soil");
+        }
         this.numFields = 1;
         this.upgradeValue = 10;
     }
@@ -13,8 +16,8 @@ public class Field {
     public int harvest() {
         int total = 0;
         for (int i = 0; i < numFields; i++) {
-            total += crops[i].value() * crops[i].remaining();
-            crops[i].plant(0); //set fields empty
+            total += crops[i].getValue() * crops[i].getHarvest();
+            crops[i].plant(0);
         }
         return total;
     }
@@ -56,7 +59,7 @@ public class Field {
         for (int i = 0; i < 3; i++) {
             System.out.print("|");
             for (int j = 0; j < amount; j++) {
-                int rep = crops[(row * 3) + j].type();
+                int rep = crops[(row * 3) + j].getNumber_Name();
                 System.out.printf("%d  %d  %d  %d  %d|", rep, rep, rep, rep, rep);
             }
             System.out.println();
