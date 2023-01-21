@@ -15,7 +15,7 @@ public class Field {
     public double harvest() {
         double total = 0;
         for (int i = 0; i < numFields; i++) {
-            total += crops[i].getHarvest();
+            total += crops[i].harvest();
             crops[i].plant(0);
         }
         return total;
