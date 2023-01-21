@@ -11,7 +11,7 @@ public class Tractor {
         level = 1;
         type = "Compact";
         weatherRes = 0;
-        horsepower = 1;
+        horsepower = 28;
     }
 
     public Tractor(int l) {
