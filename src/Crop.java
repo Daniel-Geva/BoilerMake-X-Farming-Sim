@@ -14,7 +14,7 @@ public class Crop {
     private int number_name;
     private double value;
     private int growthStage;
-    public int waterLevel;
+    public int waterLevel = 0;
     private int idealwater;
     private int fertilizerLevel;
     private double health;
