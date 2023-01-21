@@ -1,37 +1,47 @@
 import java.util.Scanner;
 
 public class Interface {
-    //TODO: figure out how to clear terminal (print many newlines?)
 
-    private static int scanInt() {
+    private static int scan(int type) {
         Scanner scan = new Scanner(System.in);
-        return scan.nextInt();
+        if (type == 1) {
+            return scan.nextInt();
+        } else if (type == 2) {
+            scan.nextLine();
+            return 1;
+        }
+        return -1;
     }
 
     private static void planting(Field field) {
-        clear();
         int numFields = field.getNumFields();
         boolean plantLoop = true;
         while (plantLoop) {
-            //System.out.println(field.getCropType(1));;
+            clear();
             field.print();
             System.out.println("You have " + numFields + " fields to plant");
-            System.out.println("Choose a field to plant, or type 0 to exit:");
-            int fieldNum = scanInt();
+            System.out.println("Choose a field to plant, or type 0 to go back:");
+            int fieldNum = scan(1);
             if (fieldNum == 0) {
                 plantLoop = false;
                 continue;
             }
             System.out.println("Choose a crop to plant:");
             field.printCropTypes();
-            int cropNum = scanInt();
+            int cropNum = scan(1);
             int result = field.plant(cropNum, fieldNum);
             if (result == -1) {
                 System.out.println("Invalid field number");
+                System.out.println("Press ENTER to continue");
+                scan(2);
             } else if (result == -2) {
                 System.out.println("Invalid crop type");
+                System.out.println("Press ENTER to continue");
+                scan(2);
             } else {
                 System.out.printf("Planted %s\n", field.getCropType(fieldNum));
+                System.out.println("Press ENTER to continue");
+                scan(2);
             }
         }
     }
@@ -41,28 +51,56 @@ public class Interface {
     }
 
     private static void weatherForecast(Weather weather) {
+        clear();
         weather.showForecast();
-        //TODO: forecast the weather
+        System.out.println("Press ENTER to continue");
+        scan(2);
     }
 
-    private static int upgrade(Field field, int money) {
-        clear();
-        System.out.println("Possible Upgrades:");
-        if (field.getUpgradeValue() == -1) {
-            System.out.println("1) Max number of fields reached");
-        } else {
-            System.out.printf("1) Add another field: %d\n", field.getUpgradeValue());
-        }
-        //TODO: add other upgrades
-
-        int resp = scanInt();
-        if (resp == 1) {
-            int result = field.expandFields(money);
-            if (result == -1) {
-                System.out.println("Insufficient funds to expand fields");
+    private static double upgrade(Field field, Tractor tractor, double money) {
+        boolean upgradeLoop = true;
+        while (upgradeLoop) {
+            clear();
+            System.out.printf("You have $%.2f\n", money);
+            System.out.println("Possible Upgrades:");
+            if (field.getUpgradeValue() == -1) {
+                System.out.println("1) Max number of fields reached");
             } else {
-                money = result;
+                System.out.printf("1) Add another field: $%.2f\n", field.getUpgradeValue());
             }
+            if (tractor.getLevel() == 9) {
+                System.out.println("2) Maximum tractor level reached");
+            } else {
+                System.out.printf("2) Upgrade tractor: $%.2f\n", tractor.getUpgradeCost());
+            }
+            System.out.println("5) Back");
+            //TODO: add other upgrades
+
+            int resp = scan(1);
+            if (resp == 1) {
+                double result = field.expandFields(money);
+                if (result == -1) {
+                    System.out.println("Insufficient funds to expand fields");
+                } else {
+                    System.out.printf("Added new field, total number of fields is now %d\n", field.getNumFields());
+                    money = result;
+                }
+            } else if (resp == 2) {
+                double result = tractor.levelUp(money);
+                if (result == -1) {
+                    System.out.println("Insufficient funds to upgrade tractor");
+                } else {
+                    System.out.printf("Tractor upgraded to level %d\n", tractor.getLevel());
+                    money = result;
+                }
+            } else if (resp == 5) {
+                upgradeLoop = false;
+                continue;
+            } else {
+                scan(2);
+            }
+            System.out.println("Press ENTER to continue");
+            scan(2);
         }
 
         return money;
@@ -77,7 +115,8 @@ public class Interface {
     public static void main(String[] args) {
         Field field = new Field();
         Weather weather = new Weather();
-        int money = 0;
+        Tractor tractor = new Tractor();
+        double money = 0;
 
         boolean running = true;
         while (running) {
@@ -93,7 +132,7 @@ public class Interface {
                 System.out.println("4: Upgrade");
                 System.out.println("5: Advance");
                 System.out.println("6: Exit");
-                int response = scanInt();
+                int response = scan(1);
                 if (response == 1) {
                     planting(field);
                 } else if (response == 2) {
@@ -101,7 +140,7 @@ public class Interface {
                 } else if (response == 3) {
                     weatherForecast(weather);
                 } else if (response == 4) {
-                    money = upgrade(field, money);
+                    money = upgrade(field, tractor, money);
                 } else if (response == 5) {
                     //TODO: advance time
                     innerLoop = false;
@@ -117,9 +156,9 @@ public class Interface {
                 weather.generateWeather();
                 field.applyWeather(weather);
                 weather.getWeather();
-                int harvest = field.harvest();
+                double harvest = field.harvest();
                 money += harvest;
-                System.out.printf("Congratulations! You made $%d this harvest! Your new total is %d\n", harvest, money);
+                System.out.printf("Congratulations! You made $%.2f this harvest! Your new total is %.2f\n", harvest, money);
 
             }
         }

@@ -1,8 +1,7 @@
 public class Field {
     private Crop[] crops;
     private int numFields;
-    private int upgradeValue;
-    //TODO: have an empty crop type
+    private double upgradeValue;
 
     public Field() {
         this.crops = new Crop[9];
@@ -13,16 +12,16 @@ public class Field {
         this.upgradeValue = 10;
     }
 
-    public int harvest() { //TODO: change to doubles
-        int total = 0;
+    public double harvest() {
+        double total = 0;
         for (int i = 0; i < numFields; i++) {
-            total += crops[i].getValue() * crops[i].getHarvest();
+            total += crops[i].getHarvest();
             crops[i].plant(0);
         }
         return total;
     }
 
-    public int expandFields(int money) {
+    public double expandFields(double money) {
         if (numFields == 9) {
             return -2;
         }
@@ -60,8 +59,6 @@ public class Field {
             System.out.print("|");
             for (int j = 0; j < amount; j++) {
                 int rep = crops[(row * 3) + j].getNumber_Name();
-                //System.out.printf("crops[%d].getNumber_Name() = %d\n", (row * 3) + j, rep);
-                //System.out.printf("crops[%d].getName() = %s\n", (row * 3) + j, crops[(row * 3) + j].getName());
                 System.out.printf("%d  %d  %d  %d  %d|", rep, rep, rep, rep, rep);
             }
             System.out.println();
@@ -72,6 +69,7 @@ public class Field {
         }
         System.out.println();
     }
+
     //TODO: fix printing
     public void print() {
         int row = 0;
@@ -95,12 +93,11 @@ public class Field {
 
     public void applyWeather(Weather weather) {
         for (int i = 0; i < numFields; i++) {
-            weather.applyStatus(crops[i - 1]);
+            weather.applyStatus(crops[i]);
         }
     }
 
     public String getCropType(int fieldNum) {
-        //System.out.printf("crops[%d].getNumber_Name() = %d\n", fieldNum, crops[fieldNum].getNumber_Name());
         return crops[fieldNum - 1].getName();
     }
 
@@ -112,7 +109,7 @@ public class Field {
         return numFields;
     }
 
-    public int getUpgradeValue() {
+    public double getUpgradeValue() {
         return upgradeValue;
     }
 }

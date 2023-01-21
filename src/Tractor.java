@@ -4,8 +4,8 @@ public class Tractor {
     private int horsepower = 1; // horsepower (scale of 1-4)
     private String type = ""; // Compact(lvl 1-4), Utility(lvl 5-6), Row Crop(lvl 7-8), 4WD(lvl 9)
 
-    final int UPGRADE_LVL = 25000;
-    final int UPGRADE_TYPE = 50000;
+    final double UPGRADE_LVL = 25000;
+    final double UPGRADE_TYPE = 50000;
 
     public Tractor() {
         level = 1;
@@ -68,8 +68,8 @@ public class Tractor {
         return horsepower / 500;
     }
 
-    public int getUpgradeCost() {
-        if ((level == 4) || (level == 6) || (level == 8)) {
+    public double getUpgradeCost() {
+        if((level == 4) || (level == 6) || (level == 8)) {
             return UPGRADE_TYPE;
         }
         else if ((level == 1) || (level == 2) || (level == 3) || (level == 5) || (level == 7)) {
@@ -79,7 +79,7 @@ public class Tractor {
             return -1;
         }
     }
-    public int levelUp(int money) {
+    public double levelUp(double money) {
         if (((level == 4) || (level == 6) || (level == 8)) && (money > UPGRADE_TYPE)) {
             level++;
             adjustStats(level);
