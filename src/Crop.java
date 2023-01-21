@@ -16,7 +16,7 @@ public class Crop {
     private int growthStage;
     private int waterLevel;
     private int fertilizerLevel;
-    private int health;
+    private double health;
     private int harvest;
     private String[] crop_numbers = new String[]{ "Soil","Corn","Cotton","Cranberries","Rice","Soybeans","Okra","Wheat"};
 
@@ -77,14 +77,14 @@ public class Crop {
         this.fertilizerLevel = fertilizerLevel;
     }
 
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
     public int getNumber_Name() {
         return number_name;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(double health) {
         this.health = health;
     }
 

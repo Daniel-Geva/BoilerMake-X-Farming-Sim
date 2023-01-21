@@ -37,8 +37,8 @@ public class Interface {
         //TODO: print crop info
     }
 
-    private static void weatherForecast(Weather weather) {
-        weather.showForcast();
+    private static void weatherForcast(Weather weather) {
+        weather.showForecast();
         //TODO: forecast the weather
     }
 

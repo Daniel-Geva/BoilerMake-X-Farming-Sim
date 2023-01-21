@@ -1,5 +1,5 @@
 public class Weather {
-    private String[] types = {"r", "s", "c", "n"};   //r=raining, s=sunny, c=cloudy, n=none
+    private final String[] types = {"r", "s", "c", "n"};   //r=raining, s=sunny, c=cloudy, n=none
     private int[] percent = {45, 45, 10, 0};
     private String status;      //current status on the crop
     private int currPercent;
@@ -9,6 +9,14 @@ public class Weather {
     * sunny: 50-78
     * cloudy: 40-60
     * */
+
+    public String getStatus() {
+        return status;
+    }
+
+    public int getCurrPercent() {
+        return currPercent;
+    }
 
     //TODO: make an effect of each weather
     public Weather() {
@@ -32,14 +40,45 @@ public class Weather {
         int randomIdx = (int) (Math.random() * (max - min + 1) + min);
         status = types[randomIdx];
 
-        int randWeather = (int) (Math.random() * 100);
+        int randWeather = (int) (Math.random() * 50);
         percent[randomIdx] = randWeather;
         currPercent = randWeather;
     }
 
     public void applyStatus(Crop crop) {
-//        crop.weather = status;
         crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)));
+    }
+
+    public void tracProtec(Tractor tractor, Crop crop) {
+        int level = tractor.getLevel();
+
+        if (level == 1) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.04);
+        }
+        else if (level == 2) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.08);
+        }
+        else if (level == 3) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.14);
+        }
+        else if (level == 4) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.2);
+        }
+        else if (level == 5) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.3);
+        }
+        else if (level == 6) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.44);
+        }
+        else if (level == 7) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.55);
+        }
+        else if (level == 8) {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.7);
+        }
+        else {
+            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 1);
+        }
     }
 
     public void getWeather() {
