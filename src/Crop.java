@@ -127,7 +127,7 @@ public class Crop {
 
     }
     public double harvest(){
-        float water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100);
+        float water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100));
 
         double yield = 25 * this.getValue();
         yield = yield*water_mods;
