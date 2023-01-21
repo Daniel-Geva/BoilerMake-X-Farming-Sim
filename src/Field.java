@@ -56,10 +56,11 @@ public class Field {
             System.out.print("-------------+");
         }
         System.out.println();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.print("|");
             for (int j = 0; j < amount; j++) {
                 int rep = crops[(row * 3) + j].getNumber_Name();
+                //System.out.printf("[crops[(%d)]].getNumber_Name()\n", (row * 3) + 1);
                 System.out.printf("%d  %d  %d  %d  %d|", rep, rep, rep, rep, rep);
             }
             System.out.println();
@@ -73,9 +74,17 @@ public class Field {
     //TODO: fix printing
     public void print() {
         int row = 0;
+        int total = numFields;
         for (int i = 0; i < 3; i++) {
-            int perRow = (numFields - (row * 3)) / (3 - row);
-            if (perRow < 0) {
+            int perRow = 0;
+            for (int j = 0; j < 3; j++) {
+                if (total == 0) {
+                    break;
+                }
+                total--;
+                perRow++;
+            }
+            if ((total == 0) && (perRow == 0)) {
                 break;
             }
             printRow(perRow, row);
@@ -90,6 +99,7 @@ public class Field {
     }
 
     public String getCropType(int fieldNum) {
+        //System.out.printf("crops[%d].getNumber_Name() = %d\n", fieldNum, crops[fieldNum].getNumber_Name());
         return crops[fieldNum].getName();
     }
 
