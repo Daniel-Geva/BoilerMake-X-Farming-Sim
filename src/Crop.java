@@ -1,4 +1,7 @@
+import java.lang.Math;
+
 public class Crop {
+
 //Corn
 //Cotton
 //Cranberries
@@ -124,7 +127,13 @@ public class Crop {
 
     }
     public double harvest(){
-        double yield = this.harvest*(this.growthStage * this.waterLevel *  this.harvest);
+        float water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100);
+
+        double yield = 25 * this.getValue();
+        yield = yield*water_mods;
+
+
+
         return yield;
     }
 
