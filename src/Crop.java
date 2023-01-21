@@ -17,8 +17,8 @@ public class Crop {
     private int number_name;
     private double value;
     private int growthStage;
-    public int waterLevel = 0;
-    private int idealwater;
+    public double waterLevel = 0;
+    private double idealwater;
     private int fertilizerLevel;
     private double health;
     private int harvest;
@@ -66,7 +66,7 @@ public class Crop {
         this.growthStage = growthStage;
     }
 
-    public int getIdealwater() {
+    public double getIdealwater() {
         return idealwater;
     }
 
@@ -127,14 +127,14 @@ public class Crop {
 
     }
     public double harvest(){
-        float water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100));
+        double water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100));
 
-        double yield = 25 * this.getValue();
-        yield = yield*water_mods;
+        double total = 25 * this.getValue();
+        total = total * water_mods;
 
 
 
-        return yield;
+        return total;
     }
 
 
