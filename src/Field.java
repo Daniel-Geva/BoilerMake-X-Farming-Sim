@@ -46,11 +46,51 @@ public class Field {
         return type;
     }
 
+    private void printRow(int amount, int row) {
+        System.out.print("+");
+        for (int i = 0; i < amount; i++) {
+            System.out.print("-------------+");
+        }
+        System.out.println();
+        for (int i = 0; i < 3; i++) {
+            System.out.print("|");
+            for (int j = 0; j < amount; j++) {
+                int rep = crops[(row * 3) + j].type();
+                System.out.printf("%d  %d  %d  %d  %d|", rep, rep, rep, rep, rep);
+            }
+            System.out.println();
+        }
+        System.out.print("+");
+        for (int i = 0; i < amount; i++) {
+            System.out.print("-------------+");
+        }
+        System.out.println();
+    }
+
     public void print() {
-        //TODO: print existing fields
+        int row = 0;
+        for (int i = 0; i < 3; i++) {
+            int perRow = (numFields - (row * 3)) / (3 - row);
+            if (perRow < 0) {
+                break;
+            }
+            printRow(perRow, row);
+            row++;
+        }
     }
 
     public int getNumFields() {
         return numFields;
     }
 }
+
+/*
+ *            +-------------+
+ *            |c  c  c  c  c|
+ *            |c  c  c  c  c|
+ *            |c  c  c  c  c|
+ *            |c  c  c  c  c|
+ *            |c  c  c  c  c|
+ *            +-------------+
+ *
+ */
