@@ -50,11 +50,6 @@ public class Field {
     }
 
     private void printRow(int amount, int row) {
-        System.out.print("+");
-        for (int i = 0; i < amount; i++) {
-            System.out.print("-------------+");
-        }
-        System.out.println();
         for (int i = 0; i < 5; i++) {
             System.out.print("|");
             for (int j = 0; j < amount; j++) {
@@ -74,6 +69,17 @@ public class Field {
     public void print() {
         int row = 0;
         int total = numFields;
+        int top = 0;
+        if (numFields >= 3) {
+            top = 3;
+        } else {
+            top = numFields;
+        }
+        System.out.print("+");
+        for (int i = 0; i < top; i++) {
+            System.out.print("-------------+");
+        }
+        System.out.println();
         for (int i = 0; i < 3; i++) {
             int perRow = 0;
             for (int j = 0; j < 3; j++) {
@@ -113,14 +119,3 @@ public class Field {
         return upgradeValue;
     }
 }
-
-/*
- *            +-------------+
- *            |c  c  c  c  c|
- *            |c  c  c  c  c|
- *            |c  c  c  c  c|
- *            |c  c  c  c  c|
- *            |c  c  c  c  c|
- *            +-------------+
- *
- */
