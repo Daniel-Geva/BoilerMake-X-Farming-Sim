@@ -142,7 +142,6 @@ public class Interface {
                 } else if (response == 4) {
                     money = upgrade(field, tractor, money);
                 } else if (response == 5) {
-                    //TODO: advance time
                     innerLoop = false;
                 } else if (response == 6) {
                     innerLoop = false;
