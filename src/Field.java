@@ -29,6 +29,9 @@ public class Field {
             money -= upgradeValue;
             upgradeValue *= 2;
             numFields++;
+            if (numFields == 9) {
+                upgradeValue = -1;
+            }
             return money;
         } else {
             return -1;
@@ -81,6 +84,10 @@ public class Field {
 
     public int getNumFields() {
         return numFields;
+    }
+
+    public int getUpgradeValue() {
+        return upgradeValue;
     }
 }
 
