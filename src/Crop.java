@@ -126,11 +126,13 @@ public class Crop {
         }
 
     }
-    public double harvest(){
+    public double harvest(Tractor tractor){
         double water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100));
 
         double total = 25 * this.getValue();
         total = total * water_mods;
+        total = total * tractor.plow();
+
 
 
 
