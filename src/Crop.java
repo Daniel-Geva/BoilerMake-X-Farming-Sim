@@ -119,4 +119,29 @@ public class Crop {
         }
 
     }
+
+
+    public String plant(int crop) {
+        switch (crop) {
+            case 0:
+                return crop_numbers[0];
+            case 1:
+
+                return crop_numbers[1];
+            case 2:
+                return crop_numbers[2];
+            case 3:
+                return crop_numbers[3];
+            case 4:
+                return crop_numbers[4];
+            case 5:
+                return crop_numbers[5];
+            case 6:
+                return crop_numbers[6];
+            case 7:
+                return crop_numbers[7];
+            default:
+                return "Invalid Crop Number";
+        }
+    }
 }
