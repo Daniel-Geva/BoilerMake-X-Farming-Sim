@@ -1,14 +1,17 @@
 public class Weather {
-    private final String[] types = {"r", "s", "c", "n"};   //r=raining, s=sunny, c=cloudy, n=none
+    private final String[] types = {"rainy", "sunny", "cloudy", "none"};   //r=raining, s=sunny, c=cloudy, n=none
     private int[] percent = {45, 45, 10, 0};
     private String status;      //current status on the crop
     private int currPercent;
 
     /* Temp during different weathers
-    * rainy: 38-80
-    * sunny: 50-78
-    * cloudy: 40-60
-    * */
+     * rainy: 38-80
+     * sunny: 50-78
+     * cloudy: 40-60
+     * */
+
+    //rice wants wet
+    //wheat needs to be dry
 
     public String getStatus() {
         return status;
@@ -23,6 +26,7 @@ public class Weather {
         status = "n";
         currPercent = 0;
     }
+
     public Weather(String currStatus, int percent) {
         status = currStatus;
         for (int i = 0; i < types.length; i++) {
@@ -47,6 +51,15 @@ public class Weather {
 
     public void applyStatus(Crop crop) {
         crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)));
+        if (status.equals(types[0])) {
+            crop.setWaterLevel((int) (crop.waterLevel + 25));
+        }
+        else if (status.equals(types[1])) {
+            crop.setWaterLevel((int) (crop.waterLevel - 25));
+        }
+        else if (status.equals(types[2])) {
+            crop.setWaterLevel((int) crop.waterLevel);
+        }
     }
 
     public void tracProtec(Tractor tractor, Crop crop) {
@@ -54,35 +67,27 @@ public class Weather {
 
         if (level == 1) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.04);
-        }
-        else if (level == 2) {
+        } else if (level == 2) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.08);
-        }
-        else if (level == 3) {
+        } else if (level == 3) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.14);
-        }
-        else if (level == 4) {
+        } else if (level == 4) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.2);
-        }
-        else if (level == 5) {
+        } else if (level == 5) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.3);
-        }
-        else if (level == 6) {
+        } else if (level == 6) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.44);
-        }
-        else if (level == 7) {
+        } else if (level == 7) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.55);
-        }
-        else if (level == 8) {
+        } else if (level == 8) {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.7);
-        }
-        else {
+        } else {
             crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 1);
         }
     }
 
     public void getWeather() {
-        if (status.equals("r")) {
+        if (status.equals("rainy")) {
             System.out.println("OH NO! IT'S RAINING");
             System.out.println("                                        ___    ,'\"\"\"\"'.\n" +
                     "                                    ,\"\"\"   \"\"\"\"'      `.\n" +
@@ -111,8 +116,7 @@ public class Weather {
                     "_.-'       .-'    .'   .'    /\n" +
                     "       _.-'    .-'   .'    .'\n" +
                     "    .-'            .'");
-        }
-        else if (status.equals("c")) {
+        } else if (status.equals("cloudy")) {
             System.out.print("IT'S CLOUDY");
             System.out.println("          .-~~~-.\n" +
                     "  .- ~ ~-(       )_ _\n" +
@@ -121,8 +125,7 @@ public class Weather {
                     " \\                         .'\n" +
                     "   ~- ._ ,. ,.,.,., ,.. -~\n" +
                     "           '       '");
-        }
-        else if (status.equals("s")) {
+        } else if (status.equals("sunny")) {
             System.out.println("IT'S SUNNY!!");
             System.out.println("                        |\n" +
                     "                    .   |\n" +
@@ -162,9 +165,9 @@ public class Weather {
 
     public int temperatureMod() {
         return switch (this.status) {
-            case "s" -> (int) (Math.random() * (78 - 50 + 1) + 50);
-            case "r" -> (int) (Math.random() * (80 - 38 + 1) + 38);
-            case "c" -> (int) (Math.random() * (60 - 40 + 1) + 40);
+            case "sunny" -> (int) (Math.random() * (78 - 50 + 1) + 50);
+            case "rainy" -> (int) (Math.random() * (80 - 38 + 1) + 38);
+            case "cloudy" -> (int) (Math.random() * (60 - 40 + 1) + 40);
             default -> 70;
         };
     }
