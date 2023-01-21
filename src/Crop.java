@@ -80,7 +80,7 @@ public class Crop {
     public int getHealth() {
         return health;
     }
-    public int getnumber_Name() {
+    public int getNumber_Name() {
         return number_name;
     }
 
