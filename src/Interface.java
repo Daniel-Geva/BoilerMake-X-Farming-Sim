@@ -46,8 +46,11 @@ public class Interface {
         }
     }
 
-    private static void cropInfo() {
-        //TODO: print crop info
+    private static void cropInfo(Field field) {
+        clear();
+        field.printCropInfo();
+        System.out.println("Press ENTER to continue");
+        scan(2);
     }
 
     private static void weatherForecast(Weather weather) {
@@ -74,7 +77,6 @@ public class Interface {
                 System.out.printf("2) Upgrade tractor: $%.2f\n", tractor.getUpgradeCost());
             }
             System.out.println("5) Back");
-            //TODO: add other upgrades
 
             int resp = scan(1);
             if (resp == 1) {
@@ -90,7 +92,7 @@ public class Interface {
                 if (result == -1) {
                     System.out.println("Insufficient funds to upgrade tractor");
                 } else {
-                    System.out.printf("Tractor upgraded to level %d\n", tractor.getLevel());
+                    System.out.printf("Tractor upgraded to level %d and is type %s\n", tractor.getLevel(), tractor.getType());
                     money = result;
                 }
             } else if (resp == 5) {
@@ -120,6 +122,7 @@ public class Interface {
 
         boolean running = true;
         while (running) {
+            weather.generatePercentages();
             boolean innerLoop = true;
             while (innerLoop) {
                 clear();
@@ -136,7 +139,7 @@ public class Interface {
                 if (response == 1) {
                     planting(field);
                 } else if (response == 2) {
-                    cropInfo();
+                    cropInfo(field);
                 } else if (response == 3) {
                     weatherForecast(weather);
                 } else if (response == 4) {
@@ -153,7 +156,6 @@ public class Interface {
 
             if (running) {
                 weather.generateWeather();
-                //TODO: apply tractor to weather
                 field.applyWeather(weather);
                 weather.getWeather();
                 double harvest = field.harvest(tractor);

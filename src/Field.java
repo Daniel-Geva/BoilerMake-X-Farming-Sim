@@ -111,6 +111,10 @@ public class Field {
         crops[0].printTypes();
     }
 
+    public void printCropInfo() {
+        crops[0].printInfo();
+    }
+
     public int getNumFields() {
         return numFields;
     }

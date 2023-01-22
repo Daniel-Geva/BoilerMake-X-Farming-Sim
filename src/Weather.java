@@ -34,7 +34,7 @@ public class Weather {
         }
     }
 
-    private void generatePercentages() {
+    public void generatePercentages() {
         int one = 0;
         int two = 0;
         int three = 0;

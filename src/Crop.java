@@ -127,6 +127,18 @@ public class Crop {
         }
 
     }
+
+    public void printInfo() {
+        int originalNum = number_name;
+
+        for (int i = 1; i < crop_numbers.length; i++) {
+            this.plant(i);
+            System.out.println(i + ") " + crop_numbers[i] + ": value - " + value + ", ideal water level - " + idealwater + ", mortality - " + health);
+        }
+
+        this.plant(originalNum);
+    }
+
     public double harvest(Tractor tractor){
         double water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100));
         if(water_mods + ((tractor.getWeatherRes()/100)) > 1){
