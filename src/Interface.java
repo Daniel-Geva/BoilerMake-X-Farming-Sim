@@ -130,7 +130,7 @@ public class Interface {
                 field.print();
                 System.out.println("Select an action:");
                 System.out.println("1: Plant a field");
-                System.out.println("2: View crop types");
+                System.out.println("2: View crop info");
                 System.out.println("3: View weather forecast");
                 System.out.println("4: Upgrade");
                 System.out.println("5: Advance");
