@@ -153,6 +153,7 @@ public class Crop {
        //
         total = total * tractor.plow();
         total = total * tractor.plow() *  (1- this.health/100) * 10;
+        total = total * 9;
 
 
 
