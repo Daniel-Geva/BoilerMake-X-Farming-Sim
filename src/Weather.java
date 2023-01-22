@@ -54,6 +54,7 @@ public class Weather {
         int min = 1;
         int randomIdx = (int) (Math.random() * (max - min + 1) + min);
         status = types[randomIdx];
+        currPercent = percent[randomIdx];
     }
 
     public void applyStatus(Crop crop) {
