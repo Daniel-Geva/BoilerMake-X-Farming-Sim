@@ -42,7 +42,7 @@ public class Weather {
             one = (int) Math.abs(Math.random() * 100);
             two = (int) Math.abs(Math.random() * 100);
             three = (int) Math.abs(Math.random() * 100);
-        } while ((one + two + three) == 100);
+        } while ((one + two + three) != 100);
 
         this.percent[0] = one;
         this.percent[1] = two;
