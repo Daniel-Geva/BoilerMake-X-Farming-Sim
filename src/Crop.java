@@ -1,4 +1,5 @@
 import java.lang.Math;
+import java.util.Arrays;
 
 public class Crop {
 
@@ -147,6 +148,16 @@ public class Crop {
         return total;
     }
 
+
+    @Override
+    public String toString() {
+        return "Crop{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                ", idealwater=" + idealwater +
+                ", health=" + health +
+                '}';
+    }
 
     public void plant(int crop) {
         switch (crop) {
