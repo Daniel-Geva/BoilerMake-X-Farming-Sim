@@ -9,7 +9,7 @@ public class Field {
             crops[i] = new Crop("Soil");
         }
         this.numFields = 1;
-        this.upgradeValue = 10;
+        this.upgradeValue = 100;
     }
 
     public double harvest(Tractor tractor) {

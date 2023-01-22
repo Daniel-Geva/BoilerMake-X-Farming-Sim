@@ -104,7 +104,7 @@ public class Weather {
             }
             case "cloudy" -> {
                 System.out.print("IT'S CLOUDY");
-                System.out.println("          .-~~~-.\n" +
+                System.out.println(".-~~~-.\n" +
                         "  .- ~ ~-(       )_ _\n" +
                         " /                    ~ -.\n" +
                         "|                          ',\n" +

@@ -4,8 +4,8 @@ public class Tractor {
     private double horsepower; // horsepower (scale of 1-4)
     private String type; // Compact(lvl 1-4), Utility(lvl 5-6), Row Crop(lvl 7-8), 4WD(lvl 9)
 
-    final double UPGRADE_LVL = 25000;
-    final double UPGRADE_TYPE = 50000;
+    final double UPGRADE_LVL = 5000;
+    final double UPGRADE_TYPE = 25000;
 
     public Tractor() {
         level = 1;

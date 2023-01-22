@@ -67,7 +67,7 @@ public class Interface {
             System.out.printf("You have $%.2f\n", money);
             System.out.println("Possible Upgrades:");
             if (field.getUpgradeValue() == -1) {
-                System.out.println("1) Max number of fields reached");
+                System.out.println("1) Maximum number of fields reached");
             } else {
                 System.out.printf("1) Add another field: $%.2f\n", field.getUpgradeValue());
             }
@@ -76,26 +76,31 @@ public class Interface {
             } else {
                 System.out.printf("2) Upgrade tractor: $%.2f\n", tractor.getUpgradeCost());
             }
-            System.out.println("5) Back");
+            System.out.println("3) Back");
 
             int resp = scan(1);
             if (resp == 1) {
                 double result = field.expandFields(money);
                 if (result == -1) {
                     System.out.println("Insufficient funds to expand fields");
+                } else if (result == -2) {
+                    System.out.println("Maximum number of fields reached");
                 } else {
                     System.out.printf("Added new field, total number of fields is now %d\n", field.getNumFields());
                     money = result;
                 }
             } else if (resp == 2) {
+                int preLevel = tractor.getLevel();
                 double result = tractor.levelUp(money);
-                if (result == -1) {
+                if (preLevel == 9) {
+                    System.out.println("Maximum tractor level reached");
+                } else if (result == -1) {
                     System.out.println("Insufficient funds to upgrade tractor");
                 } else {
                     System.out.printf("Tractor upgraded to level %d and is type %s\n", tractor.getLevel(), tractor.getType());
                     money = result;
                 }
-            } else if (resp == 5) {
+            } else if (resp == 3) {
                 upgradeLoop = false;
                 continue;
             } else {
@@ -158,6 +163,7 @@ public class Interface {
                 weather.generateWeather();
                 field.applyWeather(weather);
                 weather.getWeather();
+
                 double harvest = field.harvest(tractor);
                 money += harvest;
                 System.out.printf("Congratulations! You made $%.2f this harvest! Your new total is %.2f\n", harvest, money);
