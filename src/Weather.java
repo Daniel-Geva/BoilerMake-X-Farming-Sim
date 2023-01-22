@@ -1,5 +1,5 @@
 public class Weather {
-    private final String[] types = {"rainy", "sunny", "cloudy", "none"};   //r=raining, s=sunny, c=cloudy, n=none
+    private final String[] types = {"rainy", "sunny", "cloudy", "none"};
     private int[] percent = {45, 45, 10, 0};
     private String status;      //current status on the crop
     private int currPercent;
@@ -8,10 +8,7 @@ public class Weather {
      * rainy: 38-80
      * sunny: 50-78
      * cloudy: 40-60
-     * */
-
-    //rice wants wet
-    //wheat needs to be dry
+     */
 
     public String getStatus() {
         return status;
@@ -21,7 +18,6 @@ public class Weather {
         return currPercent;
     }
 
-    //TODO: make an effect of each weather
     public Weather() {
         status = "n";
         currPercent = 0;
@@ -38,19 +34,29 @@ public class Weather {
         }
     }
 
-    public void generateWeather() {
-        int max = types.length - 1;        //max num of types
-        int min = 1;        //min num of types
-        int randomIdx = (int) (Math.random() * (max - min + 1) + min);
-        status = types[randomIdx];      //make it add up to 100%
+    private void generatePercentages() {
+        int one = 0;
+        int two = 0;
+        int three = 0;
+        do {
+            one = (int) Math.abs(Math.random() * 100);
+            two = (int) Math.abs(Math.random() * 100);
+            three = (int) Math.abs(Math.random() * 100);
+        } while ((one + two + three) != 100);
 
-        int randWeather = (int) (Math.random() * 50);
-        percent[randomIdx] = randWeather;
-        currPercent = randWeather;
+        this.percent[0] = one;
+        this.percent[1] = two;
+        this.percent[2] = three;
+    }
+
+    public void generateWeather() {
+        int max = types.length - 1;
+        int min = 1;
+        int randomIdx = (int) (Math.random() * (max - min + 1) + min);
+        status = types[randomIdx];
     }
 
     public void applyStatus(Crop crop) {
-        crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)));
         int random = (int) (Math.random() * (25 - 2 + 1) + 2);
         if (status.equals(types[0])) {
             crop.setWaterLevel((int) (crop.waterLevel + random));
@@ -60,30 +66,6 @@ public class Weather {
         }
         else if (status.equals(types[2])) {
             crop.setWaterLevel((int) crop.waterLevel);
-        }
-    }
-
-    public void tracProtec(Tractor tractor, Crop crop) {
-        int level = tractor.getLevel();
-
-        if (level == 1) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.04);
-        } else if (level == 2) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.08);
-        } else if (level == 3) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.14);
-        } else if (level == 4) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.2);
-        } else if (level == 5) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.3);
-        } else if (level == 6) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.44);
-        } else if (level == 7) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.55);
-        } else if (level == 8) {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 0.7);
-        } else {
-            crop.setHealth(crop.getHealth() - (crop.getHealth() * (currPercent / 100)) + 1);
         }
     }
 
@@ -162,7 +144,7 @@ public class Weather {
 
 
     public void showForecast() {
-        System.out.println("The estimated weather pattern and their respective percentage are:");
+        System.out.println("The estimated weather pattern and their percentages are:");
         for (int i = 0; i < types.length - 1; i++) {
             System.out.println(types[i] + ": " + percent[i]);
         }
