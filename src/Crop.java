@@ -128,10 +128,18 @@ public class Crop {
     }
     public double harvest(Tractor tractor){
         double water_mods = 1- ((Math.abs(waterLevel - this.idealwater)/100));
+        if(water_mods + ((tractor.getWeatherRes()/100)) > 1){
+            water_mods = 1;
+        }
+        else{
+            water_mods = water_mods +(tractor.getWeatherRes()/100);
+        }
 
         double total = 25 * this.getValue();
         total = total * water_mods;
+       //
         total = total * tractor.plow();
+        total = total * tractor.plow() *  (1- this.health/100) * 10;
 
 
 
@@ -159,11 +167,11 @@ public class Crop {
                 this.name = "Corn";
 
                 number_name = setNumberName(name);
-                value = 4;
+                value = 67;
                 growthStage = 1;
                 idealwater = 5;
                 fertilizerLevel = 5;
-                health = 5;
+                health = 0;
                 harvest = 1;
                 break;
 
@@ -171,9 +179,9 @@ public class Crop {
                 this.name = "Cotton";
 
                 number_name = setNumberName(name);
-                value = 47;
+                value = 43;
                 growthStage = 1;
-                idealwater = 5;
+                idealwater = 20;
                 fertilizerLevel = 5;
                 health = 5;
                 harvest = 1;
@@ -185,9 +193,9 @@ public class Crop {
                 number_name = setNumberName(name);
                 value = 13;
                 growthStage = 1;
-                idealwater = 5;
+                idealwater = 1;
                 fertilizerLevel = 5;
-                health = 5;
+                health = 15;
                 harvest = 1;
                 break;
 
@@ -195,11 +203,11 @@ public class Crop {
                 this.name = "Rice";
 
                 number_name = setNumberName(name);
-                value = 99;
+                value = 70;
                 growthStage = 1;
-                idealwater = 5;
+                idealwater = 30;
                 fertilizerLevel = 5;
-                health = 5;
+                health = 20;
                 harvest = 0;
                 break;
 
@@ -207,11 +215,11 @@ public class Crop {
                 this.name = "Soybeans";
 
                 number_name = setNumberName(name);
-                value = 68;
+                value = 65;
                 growthStage = 1;
-                idealwater = 5;
+                idealwater = 15;
                 fertilizerLevel = 5;
-                health = 5;
+                health = 25;
                 harvest = 0;
                 break;
 
@@ -219,11 +227,11 @@ public class Crop {
                 this.name = "Okra";
 
                 number_name = setNumberName(name);
-                value = 16;
+                value = 11;
                 growthStage = 1;
-                idealwater = 5;
+                idealwater = -25;
                 fertilizerLevel = 5;
-                health = 5;
+                health = 30;
                 harvest = 0;
                 break;
 
@@ -231,11 +239,11 @@ public class Crop {
                 this.name = "Wheat";
 
                 number_name = setNumberName(name);
-                value = 50;
+                value = 100;
                 growthStage = 1;
                 idealwater = 5;
                 fertilizerLevel = 5;
-                health = 5;
+                health = 30;
                 harvest = 0;
                 break;
             default:
