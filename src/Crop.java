@@ -20,7 +20,7 @@ public class Crop {
     private int growthStage;
     public double waterLevel = 0;
     private double idealwater;
-    private int fertilizerLevel;
+    private double cost;
     private double health;
     private int harvest;
     private String[] crop_numbers = new String[]{"Soil", "Corn", "Cotton", "Cranberries", "Rice", "Soybeans", "Okra", "Wheat"};
@@ -32,19 +32,19 @@ public class Crop {
         value = 4;
         growthStage = 0;
         idealwater = 5;
-        fertilizerLevel = 5;
+        cost = 5;
         health = 5;
         harvest = 0;
     }
 
-    public Crop(String name, double value, int growthStage, int idealwater, int fertilizerLevel, int health, int harvest) {
+    public Crop(String name, double value, int growthStage, int idealwater, int cost, int health, int harvest) {
         this.name = name;
         this.number_name = setNumberName(name);
 
         this.value = value;
         this.growthStage = growthStage;
         this.idealwater = idealwater;
-        this.fertilizerLevel = fertilizerLevel;
+        this.cost = cost;
         this.health = health;
         this.harvest = harvest;
 
@@ -75,12 +75,12 @@ public class Crop {
         this.idealwater = idealwater;
     }
 
-    public int getFertilizerLevel() {
-        return fertilizerLevel;
+    public double getCost() {
+        return cost;
     }
 
-    public void setFertilizerLevel(int fertilizerLevel) {
-        this.fertilizerLevel = fertilizerLevel;
+    public void setFertilizerLevel(int cost) {
+        this.cost = cost;
     }
 
     public double getHealth() {
@@ -154,10 +154,7 @@ public class Crop {
         total = total * tractor.plow();
         total = total * tractor.plow() *  (1- this.health/100) * 10;
         total = total * 9;
-
-
-
-
+        total -= this.cost;
         return total;
     }
 
@@ -182,7 +179,7 @@ public class Crop {
                 value = 0;
                 growthStage = 0;
                 idealwater = 0;
-                fertilizerLevel = 0;
+                cost = 0;
                 health = 0;
                 harvest = 0;
                 break;
@@ -194,7 +191,7 @@ public class Crop {
                 value = 67;
                 growthStage = 1;
                 idealwater = 5;
-                fertilizerLevel = 5;
+                cost = 45;
                 health = 0;
                 harvest = 1;
                 break;
@@ -206,7 +203,7 @@ public class Crop {
                 value = 43;
                 growthStage = 1;
                 idealwater = 20;
-                fertilizerLevel = 5;
+                cost = 27;
                 health = 5;
                 harvest = 1;
                 break;
@@ -218,7 +215,7 @@ public class Crop {
                 value = 13;
                 growthStage = 1;
                 idealwater = 1;
-                fertilizerLevel = 5;
+                cost = 8;
                 health = 15;
                 harvest = 1;
                 break;
@@ -230,7 +227,7 @@ public class Crop {
                 value = 70;
                 growthStage = 1;
                 idealwater = 30;
-                fertilizerLevel = 5;
+                cost = 36;
                 health = 20;
                 harvest = 0;
                 break;
@@ -242,7 +239,7 @@ public class Crop {
                 value = 65;
                 growthStage = 1;
                 idealwater = 15;
-                fertilizerLevel = 5;
+                cost = 34;
                 health = 25;
                 harvest = 0;
                 break;
@@ -254,7 +251,7 @@ public class Crop {
                 value = 11;
                 growthStage = 1;
                 idealwater = -25;
-                fertilizerLevel = 5;
+                cost = 5;
                 health = 30;
                 harvest = 0;
                 break;
@@ -266,7 +263,7 @@ public class Crop {
                 value = 100;
                 growthStage = 1;
                 idealwater = 5;
-                fertilizerLevel = 5;
+                cost = 50;
                 health = 30;
                 harvest = 0;
                 break;
@@ -274,7 +271,13 @@ public class Crop {
                 System.out.println("Invalid Crop Number");
                 //return "Invalid Crop Number";
         }
-
-
+    }
+    
+    int payment(double money) {
+        if (money >= cost) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

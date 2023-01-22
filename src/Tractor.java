@@ -1,6 +1,6 @@
 public class Tractor {
     private int level; // 1-9
-    private int weatherRes; // weather resistance (scale of 0-3)
+    private double weatherRes; // weather resistance (scale of 0-3)
     private double horsepower; // horsepower (scale of 1-4)
     private String type; // Compact(lvl 1-4), Utility(lvl 5-6), Row Crop(lvl 7-8), 4WD(lvl 9)
 
@@ -22,7 +22,7 @@ public class Tractor {
     public int getLevel() {
         return level;
     }
-    public int getWeatherRes() {
+    public double getWeatherRes() {
         return weatherRes;
     }
 

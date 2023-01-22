@@ -38,14 +38,20 @@ public class Field {
         }
     }
 
-    public int plant(int type, int field) {
+    public int plant(int type, int field, double money) {
         if (field > numFields) {
             return -1;
         }
         if ((type > 7) || (type < 0)) {
             return -2;
         }
-        crops[field - 1].plant(type);
+        int ret = crops[field - 1].payment(money);
+        System.out.println(ret);
+        if (ret == -1) {
+            return -3;
+        } else {
+            crops[field - 1].plant(type);
+        }
         return type;
     }
 

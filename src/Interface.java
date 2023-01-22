@@ -13,7 +13,7 @@ public class Interface {
         return -1;
     }
 
-    private static void planting(Field field) {
+    private static void planting(Field field, double money) {
         int numFields = field.getNumFields();
         boolean plantLoop = true;
         while (plantLoop) {
@@ -29,13 +29,17 @@ public class Interface {
             System.out.println("Choose a crop to plant:");
             field.printCropTypes();
             int cropNum = scan(1);
-            int result = field.plant(cropNum, fieldNum);
+            int result = field.plant(cropNum, fieldNum, money);
             if (result == -1) {
                 System.out.println("Invalid field number");
                 System.out.println("Press ENTER to continue");
                 scan(2);
             } else if (result == -2) {
                 System.out.println("Invalid crop type");
+                System.out.println("Press ENTER to continue");
+                scan(2);
+            } else if (result == -3) {
+                System.out.println("Not enough money to afford that seed");
                 System.out.println("Press ENTER to continue");
                 scan(2);
             } else {
@@ -123,7 +127,7 @@ public class Interface {
         Field field = new Field();
         Weather weather = new Weather();
         Tractor tractor = new Tractor();
-        double money = 0;
+        double money = 50;
 
         boolean running = true;
         while (running) {
@@ -142,7 +146,7 @@ public class Interface {
                 System.out.println("6: Exit");
                 int response = scan(1);
                 if (response == 1) {
-                    planting(field);
+                    planting(field, money);
                 } else if (response == 2) {
                     cropInfo(field);
                 } else if (response == 3) {
